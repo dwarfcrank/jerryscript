@@ -36,7 +36,7 @@ EXT_CFLAGS	:=	-g -Wall -Werror \
 
 all: jerry
 
-jerry:
+$(BUILD_DIR)/Makefile:
 	mkdir -p $(BUILD_DIR)
 	cmake -B$(BUILD_DIR) -H./ \
 	 -DCMAKE_SYSTEM_NAME=switch \
@@ -51,6 +51,7 @@ jerry:
 	 -DENABLE_STRIP=OFF \
 	 -DMEM_HEAP_SIZE_KB=$(JERRYHEAP)
 
+jerry: $(BUILD_DIR)/Makefile
 	make -C$(BUILD_DIR)
 
 clean:
